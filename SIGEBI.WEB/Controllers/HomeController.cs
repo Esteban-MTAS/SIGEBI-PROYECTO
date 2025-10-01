@@ -1,6 +1,6 @@
-using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using SIGEBI.WEB.Models;
+using System.Diagnostics;
 
 namespace SIGEBI.WEB.Controllers
 {
