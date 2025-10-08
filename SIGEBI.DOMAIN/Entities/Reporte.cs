@@ -1,11 +1,16 @@
-﻿namespace SIGEBI.DOMAIN.Entities
+﻿using SIGEBI.Domain.Base;
+namespace SIGEBI.Domain.Entities
 {
-    internal class Reporte
+    public class Reporte : AuditEntity
     {
         public int Id { get; set; }
-        public string Titulo { get; set; }
-        public string Descripcion { get; set; }
-        public DateTime FechaCreacion { get; set; }
-        public string Autor { get; set; }
+        public string Tipo { get; set; } // Libros, Prestamos, Penalizaciones
+        public DateTime FechaGeneracion { get; set; }
+        public string Datos { get; set; }
+
+        // Relaciones
+        public int GeneradoPor { get; set; }
+        public Usuario Usuario { get; set; }
     }
 }
+

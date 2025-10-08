@@ -1,6 +1,4 @@
 ﻿using SIGEBI.Domain.Entities;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace SIGEBI.Domain.Repository
 {
@@ -13,3 +11,4 @@ namespace SIGEBI.Domain.Repository
         Task DeleteAsync(int id);
     }
 }
+

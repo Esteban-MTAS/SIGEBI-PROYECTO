@@ -1,13 +1,19 @@
-﻿namespace SIGEBI.DOMAIN.Entities
+﻿using SIGEBI.Domain.Base;
+namespace SIGEBI.Domain.Entities
 {
-    public class Usuario
+    public class Usuario : AuditEntity
     {
         public int Id { get; set; }
         public string Nombre { get; set; }
-        public string Apellido { get; set; }
         public string Email { get; set; }
-        public string Telefono { get; set; }
-        public DateTime FechaRegistro { get; set; }
-        public bool Activo { get; set; }
+        public string Rol { get; set; }   // Bibliotecario, Usuario, Administrador
+        public string Estado { get; set; }
+
+        // Relaciones
+        public ICollection<Prestamo> Prestamos { get; set; }
+        public ICollection<Penalizacion> Penalizaciones { get; set; }
+        public ICollection<Reporte> ReportesGenerados { get; set; }
+        public ICollection<Notificacion> Notificaciones { get; set; }
     }
 }
+

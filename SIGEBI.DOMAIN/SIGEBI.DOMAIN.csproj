@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Repository\Class1.cs" />
+    <Compile Remove="Repository\ILibroRepository - Copia.cs" />
+  </ItemGroup>
+
 </Project>

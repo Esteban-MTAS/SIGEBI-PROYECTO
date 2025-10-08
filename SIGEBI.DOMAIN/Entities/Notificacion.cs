@@ -1,12 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SIGEBI.DOMAIN.Entities
+﻿using SIGEBI.Domain.Base;
+namespace SIGEBI.Domain.Entities
 {
-    internal class Notificacion
+    public class Notificacion : AuditEntity
     {
+        public int Id { get; set; }
+        public string Mensaje { get; set; }
+        public DateTime FechaEnvio { get; set; }
+        public bool Leido { get; set; }
+
+        // Relaciones
+        public int UsuarioId { get; set; }
+        public Usuario Usuario { get; set; }
     }
 }

@@ -1,6 +1,15 @@
-﻿namespace SIGEBI.DOMAIN.Repository
+﻿using SIGEBI.Domain.Entities;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+namespace SIGEBI.Domain.Repository
 {
-    internal interface IUsuarioRepository
+    public interface IUsuarioRepository
     {
+        Task<Usuario> GetByIdAsync(int id);
+        Task<IEnumerable<Usuario>> GetAllAsync();
+        Task AddAsync(Usuario usuario);
+        Task UpdateAsync(Usuario usuario);
+        Task DeleteAsync(int id);
     }
 }

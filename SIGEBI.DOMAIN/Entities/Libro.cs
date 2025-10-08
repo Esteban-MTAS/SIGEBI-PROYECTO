@@ -1,16 +1,17 @@
-﻿namespace SIGEBI.DOMAIN.Entities
+﻿using SIGEBI.Domain.Base;
+namespace SIGEBI.Domain.Entities
 {
-    public class Libro
-    {                           
+    public class Libro : AuditEntity
+    {
         public int Id { get; set; }
-        public string Titulo { get; set; }
-        public string Autor { get; set; }
-        public DateTime FechaPublicacion { get; set; }
-        public string Editorial { get; set; }
-        public int NumeroPaginas { get; set; }
-        public string Genero { get; set; }
-        public string Idioma { get; set; }
-        public string Descripcion { get; set; }
+        public string? Titulo { get; set; }
+        public string? Autor { get; set; }
         public bool Disponible { get; set; }
+
+        public string? ISBN { get; set; }
+
+
+        // Relaciones
+        public ICollection<Prestamo> Prestamos { get; set; }
     }
 }
