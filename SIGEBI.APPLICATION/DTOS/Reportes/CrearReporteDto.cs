@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SIGEBI.APPLICATION.DTOS
+namespace SIGEBI.APPLICATION.DTOS.Reportes
 {
-    internal class UsuarioDTO
+    internal class CrearReporteDto
     {
     }
 }

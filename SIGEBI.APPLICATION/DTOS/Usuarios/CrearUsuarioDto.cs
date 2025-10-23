@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SIGEBI.APPLICATION.DTOS
+namespace SIGEBI.APPLICATION.DTOS.Usuarios
 {
-    internal class LibroDTO
+    internal class CrearUsuarioDto
     {
     }
 }

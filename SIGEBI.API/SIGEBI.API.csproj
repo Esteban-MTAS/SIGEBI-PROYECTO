@@ -10,4 +10,9 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SIGEBI.DOMAIN\SIGEBI.DOMAIN.csproj" />
+    <ProjectReference Include="..\SIGEBI.PERSISTENCE\SIGEBI.PERSISTENCE.csproj" />
+  </ItemGroup>
+
 </Project>
