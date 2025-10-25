@@ -5,7 +5,7 @@ using SIGEBI.Persistence.Context;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace SIGEBI.Persistence.Repositories
+namespace SIGEBI.Persistence.Repositories   
 {
     public class LibroRepository : ILibroRepository
     {

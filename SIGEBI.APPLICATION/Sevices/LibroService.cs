@@ -1,12 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SIGEBI.Application.Dtos.Libros;
+using SIGEBI.Application.Interfaces;
 
-namespace SIGEBI.APPLICATION.Sevices
+namespace SIGEBI.Application.Services
 {
-    internal class LibroService
+    public class LibroService : ILibroService
     {
+        public Task<IEnumerable<LibroDto>> GetAllAsync(int page = 1, int pageSize = 10, string? autor = null, string? titulo = null)
+            => Task.FromResult<IEnumerable<LibroDto>>(new List<LibroDto>());
+
+        public Task<LibroDto?> GetByIdAsync(int id)
+            => Task.FromResult<LibroDto?>(null);
+
+        public Task<LibroDto> CreateAsync(CrearLibroDto dto)
+            => Task.FromResult(new LibroDto());
+
+        public Task<bool> UpdateAsync(int id, LibroDto dto)
+            => Task.FromResult(false);
+
+        public Task<bool> DeleteAsync(int id)
+            => Task.FromResult(false);
     }
 }
+

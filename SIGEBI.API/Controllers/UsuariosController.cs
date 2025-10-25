@@ -81,6 +81,7 @@ namespace SIGEBI.API.Controllers
             return CreatedAtAction(nameof(GetById), new { id = usuario.Id }, result);
         }
 
+      
         // PUT: api/usuarios/5
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, ActualizarUsuarioDto dto)
@@ -89,9 +90,18 @@ namespace SIGEBI.API.Controllers
                 return BadRequest("El ID de la URL no coincide con el del objeto.");
 
             var usuario = await _context.Usuarios.FindAsync(id);
-
             if (usuario == null)
                 return NotFound();
+
+            // Validación no permitir suspender si tiene préstamos activos
+            if (dto.Estado != "Activo")
+            {
+                var tienePrestamosActivos = await _context.Prestamos
+                    .AnyAsync(p => p.UsuarioId == id && p.Estado == "Activo");
+
+                if (tienePrestamosActivos)
+                    return BadRequest("No se puede cambiar el estado del usuario porque tiene préstamos activos.");
+            }
 
             usuario.Nombre = dto.Nombre;
             usuario.Email = dto.Email;

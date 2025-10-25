@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using SIGEBI.Application.Dtos.Libros;
 using SIGEBI.Domain.Entities;
 using SIGEBI.Domain.Repository;
-using SIGEBI.Application.Dtos.Libros;
+using SIGEBI.Persistence.Context;
 
 namespace SIGEBI.API.Controllers
 {
@@ -10,10 +12,12 @@ namespace SIGEBI.API.Controllers
     public class LibrosController : ControllerBase
     {
         private readonly ILibroRepository _libroRepo;
+        private readonly SIGEBIDbContext _context;
 
-        public LibrosController(ILibroRepository libroRepo)
+        public LibrosController(ILibroRepository libroRepo, SIGEBIDbContext context)
         {
             _libroRepo = libroRepo;
+            _context = context;
         }
 
         // GET: api/libros
@@ -63,7 +67,7 @@ namespace SIGEBI.API.Controllers
                 ISBN = dto.ISBN,
                 FechaRegistro = DateTime.Now,
                 CantidadTotal = dto.CantidadTotal,
-                CantidadDisponible = dto.CantidadTotal // Inicializa igual al total
+                CantidadDisponible = dto.CantidadTotal 
             };
 
             await _libroRepo.AddAsync(libro);
@@ -103,8 +107,15 @@ namespace SIGEBI.API.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
+            var tienePrestamos = await _context.Prestamos
+                .AnyAsync(p => p.LibroId == id && p.Estado == "Activo");
+
+            if (tienePrestamos)
+                return BadRequest("No se puede eliminar un libro con préstamos activos.");
+
             await _libroRepo.DeleteAsync(id);
             return NoContent();
         }
     }
 }
+

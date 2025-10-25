@@ -1,12 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SIGEBI.Application.Dtos.Notificaciones;
 
-namespace SIGEBI.APPLICATION.Interfaces
+namespace SIGEBI.Application.Interfaces
 {
-    internal interface INotificacionService
+    public interface INotificacionService
     {
+        Task<IEnumerable<NotificacionDto>> GetAllAsync(int page = 1, int pageSize = 10);
+        Task<NotificacionDto?> GetByIdAsync(int id);
+        Task<NotificacionDto> CreateAsync(CrearNotificacionDto dto);
+
+        // Métodos que faltaban
+        Task<bool> SendToUserAsync(string mensaje);
+        Task<bool> SendToRoleAsync(string mensaje);
+        Task<bool> SendToAllAsync(string mensaje);
     }
 }
+

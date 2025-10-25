@@ -1,12 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SIGEBI.Application.Dtos.Prestamos;
+using SIGEBI.Application.Interfaces;
 
-namespace SIGEBI.APPLICATION.Sevices
+namespace SIGEBI.Application.Services
 {
-    internal class PrestamoService
+    public class PrestamoService : IPrestamoService
     {
+        public Task<IEnumerable<PrestamoDto>> GetAllAsync(int page = 1, int pageSize = 10)
+            => Task.FromResult<IEnumerable<PrestamoDto>>(new List<PrestamoDto>());
+
+        public Task<PrestamoDto?> GetByIdAsync(int id)
+            => Task.FromResult<PrestamoDto?>(null);
+
+        public Task<PrestamoDto> CreateAsync(CrearPrestamoDto dto)
+            => Task.FromResult(new PrestamoDto());
+
+        public Task<bool> DevolverAsync(int id)
+            => Task.FromResult(false);
+
+        public Task<IEnumerable<PrestamoDto>> GetByUsuarioAsync(int usuarioId)
+            => Task.FromResult<IEnumerable<PrestamoDto>>(new List<PrestamoDto>());
+
+        public Task<IEnumerable<PrestamoDto>> GetActivosAsync()
+            => Task.FromResult<IEnumerable<PrestamoDto>>(new List<PrestamoDto>());
+
+        public Task<bool> DeleteAsync(int id)
+            => Task.FromResult(false);
     }
 }

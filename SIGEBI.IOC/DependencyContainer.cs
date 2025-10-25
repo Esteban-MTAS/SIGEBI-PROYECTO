@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using SIGEBI.Application.Interfaces;
+using SIGEBI.Application.Services;
 using SIGEBI.Domain.Repository;
 using SIGEBI.Persistence;
 using SIGEBI.Persistence.Context;
@@ -21,6 +23,13 @@ namespace SIGEBI.IOC
             services.AddScoped<IReporteRepository, ReporteRepository>();
             services.AddScoped<INotificacionesRepository, NotificacionRepository>();
 
+
+            services.AddScoped<ILibroService, LibroService>();
+            services.AddScoped<IUsuarioService, UsuarioService>();
+            services.AddScoped<IPrestamoService, PrestamoService>();
+            services.AddScoped<IPenalizacionService, PenalizacionService>();
+            services.AddScoped<INotificacionService, NotificacionService>();
+            services.AddScoped<IReporteService, ReporteService>();
 
         }
     }

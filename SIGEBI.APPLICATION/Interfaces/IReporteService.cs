@@ -1,12 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SIGEBI.Application.Dtos.Reportes;
 
-namespace SIGEBI.APPLICATION.Interfaces
+namespace SIGEBI.Application.Interfaces
 {
-    internal interface IReporteService
+    public interface IReporteService
     {
+        
+        Task<ReporteDto> GenerarPrestamosActivosAsync();
+
+        
+        Task<ReporteDto> GenerarPenalizacionesAsync();
+
+        Task<ReporteDto> GenerarLibrosMasPrestadosAsync(DateTime fechaInicio, DateTime fechaFin);
+       
+        Task<ReporteDto> GenerarUsuariosConMasPrestamosAsync(DateTime fechaInicio, DateTime fechaFin);
     }
 }
