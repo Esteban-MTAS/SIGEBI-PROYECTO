@@ -14,10 +14,4 @@
     <Compile Include="Views\Configuracion\Index.cshtml" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Views\Reportes\" />
-    <Folder Include="Views\Prestamos\" />
-    <Folder Include="Views\Usuarios\" />
-  </ItemGroup>
-
 </Project>

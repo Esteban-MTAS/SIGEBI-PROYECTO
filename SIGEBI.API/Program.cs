@@ -16,6 +16,7 @@ builder.Services.AddScoped<ILibroRepository, LibroRepository>();
 builder.Services.AddScoped<IPrestamoRepository, PrestamoRepository>();
 builder.Services.AddScoped<IPenalizacionRepository, PenalizacionRepository>();
 builder.Services.AddScoped<IReporteRepository, ReporteRepository>();
+builder.Services.AddScoped<INotificacionesRepository, NotificacionRepository>();
 
 
 // 3. Servicios de controladores y Swagger

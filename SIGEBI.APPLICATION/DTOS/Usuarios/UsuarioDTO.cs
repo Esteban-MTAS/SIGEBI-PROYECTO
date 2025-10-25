@@ -1,12 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SIGEBI.APPLICATION.DTOS.Usuarios
+﻿namespace SIGEBI.Application.Dtos.Usuarios
 {
-    internal class UsuarioDTO
+    public class UsuarioDto
     {
+        public int Id { get; set; }
+        public string Nombre { get; set; }
+        public string Email { get; set; }
+        public string Rol { get; set; }
+        public string Estado { get; set; }
     }
+
+
+    public class ActualizarUsuarioDto
+    {
+        public int Id { get; set; }
+        public string Nombre { get; set; }
+        public string Email { get; set; }
+        public string Rol { get; set; }
+        public string Estado { get; set; }
+    }
+
 }

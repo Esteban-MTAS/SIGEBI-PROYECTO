@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SIGEBI.APPLICATION.DTOS.Reportes
+﻿namespace SIGEBI.Application.Dtos.Reportes
 {
-    internal class CrearReporteDto
+    public class CrearReporteDto
     {
+        public string Tipo { get; set; }
+        public string Datos { get; set; }
+        public int GeneradoPor { get; set; }
     }
 }

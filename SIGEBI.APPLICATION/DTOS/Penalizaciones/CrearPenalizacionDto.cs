@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SIGEBI.APPLICATION.DTOS.Penalizaciones
+﻿namespace SIGEBI.Application.Dtos.Penalizaciones
 {
-    internal class CrearPenalizacionDto
+    public class CrearPenalizacionDto
     {
+        public int UsuarioId { get; set; }
+        public int PrestamoId { get; set; }
+        public decimal Monto { get; set; }
+        public string Motivo { get; set; }
     }
+
+
 }

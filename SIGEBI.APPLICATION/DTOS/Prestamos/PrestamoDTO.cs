@@ -1,12 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SIGEBI.APPLICATION.DTOS.Prestamos
+﻿namespace SIGEBI.Application.Dtos.Prestamos
 {
-    internal class PrestamoDTO
+    public class PrestamoDto
     {
+        public int Id { get; set; }
+        public int UsuarioId { get; set; }
+        public int LibroId { get; set; }
+        public int RegistradoPor { get; set; } // Bibliotecario
+        public DateTime FechaPrestamo { get; set; }
+        public DateTime? FechaDevolucion { get; set; }
+        public string Estado { get; set; } // Activo, Devuelto, Vencido
+    }
+
+    namespace SIGEBI.Application.Dtos.Prestamos
+    {
+        public class ActualizarPrestamoDto
+        {
+            public int Id { get; set; }
+            public DateTime? FechaDevolucion { get; set; }
+            public string Estado { get; set; } // Activo, Devuelto, Vencido
+        }
     }
 }

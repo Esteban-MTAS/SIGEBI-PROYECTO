@@ -1,6 +1,15 @@
 ﻿using SIGEBI.Domain.Base;
 namespace SIGEBI.Domain.Entities
 {
+
+    public abstract class AuditEntity
+    {
+        public string? CreadoPor { get; set; }
+        public string? ActualizadoPor { get; set; }
+        public DateTime? FechaRegistro { get; set; }
+        public DateTime? FechaActualizacion { get; set; }
+    }
+
     public class Notificacion : AuditEntity
     {
         public int Id { get; set; }

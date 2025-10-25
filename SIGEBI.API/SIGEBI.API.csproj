@@ -11,8 +11,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SIGEBI.APPLICATION\SIGEBI.APPLICATION.csproj" />
     <ProjectReference Include="..\SIGEBI.DOMAIN\SIGEBI.DOMAIN.csproj" />
     <ProjectReference Include="..\SIGEBI.PERSISTENCE\SIGEBI.PERSISTENCE.csproj" />
+
   </ItemGroup>
 
 </Project>

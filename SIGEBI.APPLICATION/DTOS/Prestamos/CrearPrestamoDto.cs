@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SIGEBI.APPLICATION.DTOS.Prestamos
+﻿namespace SIGEBI.Application.Dtos.Prestamos
 {
-    internal class CrearPrestamoDto
+    public class CrearPrestamoDto
     {
+        public int UsuarioId { get; set; }
+        public int LibroId { get; set; }
+        public int RegistradoPor { get; set; } // Bibliotecario
+        public DateTime FechaDevolucion { get; set; }
     }
 }

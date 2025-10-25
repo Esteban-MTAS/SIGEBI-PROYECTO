@@ -4,12 +4,15 @@ using System.Threading.Tasks;
 
 namespace SIGEBI.Domain.Repository
 {
-    public interface INotificacionRepository
+    public interface INotificacionesRepository
     {
+        Task<Notificacion> AddAsync(Notificacion notificacion); 
         Task<Notificacion> GetByIdAsync(int id);
         Task<IEnumerable<Notificacion>> GetAllAsync();
-        Task AddAsync(Notificacion notificacion);
         Task UpdateAsync(Notificacion notificacion);
         Task DeleteAsync(int id);
     }
 }
+
+
+
