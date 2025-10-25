@@ -23,8 +23,6 @@ namespace SIGEBI.Persistence.Configurations
             builder.Property(l => l.ISBN)
                    .HasMaxLength(20);
 
-            builder.Property(l => l.Disponible)
-                   .HasDefaultValue(true);
 
             builder.Property(l => l.FechaRegistro)
                    .HasDefaultValueSql("GETDATE()");

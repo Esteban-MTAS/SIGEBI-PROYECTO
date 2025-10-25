@@ -16,7 +16,7 @@ namespace SIGEBI.API.Controllers
             _libroRepo = libroRepo;
         }
 
-        
+        // GET: api/libros
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
@@ -27,12 +27,13 @@ namespace SIGEBI.API.Controllers
                 Titulo = l.Titulo,
                 Autor = l.Autor,
                 ISBN = l.ISBN,
-                Disponible = l.Disponible
+                CantidadTotal = l.CantidadTotal,
+                CantidadDisponible = l.CantidadDisponible
             });
             return Ok(result);
         }
 
-     
+        // GET: api/libros/{id}
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
@@ -45,12 +46,13 @@ namespace SIGEBI.API.Controllers
                 Titulo = libro.Titulo,
                 Autor = libro.Autor,
                 ISBN = libro.ISBN,
-                Disponible = libro.Disponible
+                CantidadTotal = libro.CantidadTotal,
+                CantidadDisponible = libro.CantidadDisponible
             };
             return Ok(dto);
         }
 
-       
+        // POST: api/libros
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CrearLibroDto dto)
         {
@@ -59,16 +61,27 @@ namespace SIGEBI.API.Controllers
                 Titulo = dto.Titulo,
                 Autor = dto.Autor,
                 ISBN = dto.ISBN,
-                Disponible = true,
-                FechaRegistro = DateTime.Now
+                FechaRegistro = DateTime.Now,
+                CantidadTotal = dto.CantidadTotal,
+                CantidadDisponible = dto.CantidadTotal // Inicializa igual al total
             };
 
             await _libroRepo.AddAsync(libro);
 
-            return CreatedAtAction(nameof(GetById), new { id = libro.Id }, libro);
+            var result = new LibroDto
+            {
+                Id = libro.Id,
+                Titulo = libro.Titulo,
+                Autor = libro.Autor,
+                ISBN = libro.ISBN,
+                CantidadTotal = libro.CantidadTotal,
+                CantidadDisponible = libro.CantidadDisponible
+            };
+
+            return CreatedAtAction(nameof(GetById), new { id = libro.Id }, result);
         }
 
-        
+        // PUT: api/libros/{id}
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, [FromBody] LibroDto dto)
         {
@@ -78,14 +91,15 @@ namespace SIGEBI.API.Controllers
             libro.Titulo = dto.Titulo;
             libro.Autor = dto.Autor;
             libro.ISBN = dto.ISBN;
-            libro.Disponible = dto.Disponible;
+            libro.CantidadTotal = dto.CantidadTotal;
+            libro.CantidadDisponible = dto.CantidadDisponible;
 
             await _libroRepo.UpdateAsync(libro);
 
             return NoContent();
         }
 
-
+        // DELETE: api/libros/{id}
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {

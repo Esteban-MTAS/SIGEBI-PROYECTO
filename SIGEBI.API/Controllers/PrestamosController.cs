@@ -63,6 +63,25 @@ namespace SIGEBI.API.Controllers
         [HttpPost]
         public async Task<ActionResult<PrestamoDto>> Create(CrearPrestamoDto dto)
         {
+            var usuario = await _context.Usuarios.FindAsync(dto.UsuarioId);
+            var libro = await _context.Libros.FindAsync(dto.LibroId);
+
+            if (usuario == null || libro == null)
+                return BadRequest("Usuario o libro no encontrado.");
+
+            if (usuario.Estado != "Activo")
+                return BadRequest("El usuario está suspendido o tiene multa.");
+
+            if (libro.CantidadDisponible <= 0)
+                return BadRequest("No hay ejemplares disponibles.");
+
+            var prestamosActivos = await _context.Prestamos
+                .Where(p => p.UsuarioId == dto.UsuarioId && p.Estado == "Activo")
+                .ToListAsync();
+
+            if (prestamosActivos.Count >= 3)
+                return BadRequest("El usuario ha alcanzado el límite de préstamos activos.");
+
             var prestamo = new Prestamo
             {
                 UsuarioId = dto.UsuarioId,
@@ -72,6 +91,8 @@ namespace SIGEBI.API.Controllers
                 FechaDevolucion = dto.FechaDevolucion,
                 Estado = "Activo"
             };
+
+            libro.CantidadDisponible--;
 
             _context.Prestamos.Add(prestamo);
             await _context.SaveChangesAsync();
@@ -95,17 +116,29 @@ namespace SIGEBI.API.Controllers
         public async Task<IActionResult> Update(int id, ActualizarPrestamoDto dto)
         {
             var prestamo = await _context.Prestamos.FindAsync(id);
-
             if (prestamo == null)
                 return NotFound();
+
+            var libro = await _context.Libros.FindAsync(prestamo.LibroId);
+            var usuario = await _context.Usuarios.FindAsync(prestamo.UsuarioId);
 
             prestamo.FechaDevolucion = dto.FechaDevolucion;
             prestamo.Estado = dto.Estado;
             prestamo.FechaActualizacion = DateTime.Now;
             prestamo.ActualizadoPor = "Sistema";
 
-            await _context.SaveChangesAsync();
+            if (dto.Estado == "Devuelto")   
+            {
+                libro.CantidadDisponible++;
 
+                if (dto.FechaDevolucion > prestamo.FechaDevolucion)
+                {
+                    usuario.Estado = "ConMulta";
+                  
+                }
+            }
+
+            await _context.SaveChangesAsync();
             return NoContent();
         }
 

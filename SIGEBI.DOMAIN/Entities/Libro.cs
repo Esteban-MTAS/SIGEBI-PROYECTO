@@ -6,8 +6,8 @@ namespace SIGEBI.Domain.Entities
         public int Id { get; set; }
         public string? Titulo { get; set; }
         public string? Autor { get; set; }
-        public bool Disponible { get; set; }
-
+        public int CantidadTotal { get; set; }
+        public int CantidadDisponible { get; set; }
         public string? ISBN { get; set; }
 
 
